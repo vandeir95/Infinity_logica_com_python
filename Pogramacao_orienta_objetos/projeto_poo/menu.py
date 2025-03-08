@@ -1,68 +1,53 @@
-from livro import Livro,LivroDidatico
+from livro import Livro,LivroDidatico,LivroInfatil
 from usuario import Aluno
 from usuario import Usuario
 from usuario import Professor
 from biblioteca import Biblioteca
 
-# # Criando alguns livros
-# livro1 = Livro("1984", "George Orwell", 1949)
-# livro2 = LivroDidatico("Matemática Básica", "João Silva", 2010, "Matemática")
-
-# # Criando alguns usuários
-# usuario1 = professor("Carlos Souza", 1, "Ciência da Computação")
-# usuario2 = Aluno("Ana Costa", 2, "Engenharia")  
-
 biblioteca = Biblioteca()
-# biblioteca.adicionar_livro(livro1)
-# biblioteca.adicionar_livro(livro2)
-# biblioteca.adicionar_usuario(usuario1)
-# biblioteca.adicionar_usuario(usuario2)
-
-# print(biblioteca.listar_livros())
-# print(biblioteca.listar_usuarios())
 
 
-# usuario2.emprestar_livros(livro1)
-
-# print(usuario2)
-
-# print("lista de livros")
-
-# print(biblioteca.listar_livros())
-
-# print("lista de livros emprestado")
-
-# print(biblioteca.listar_livros_emprestados())
+menu = ( "    -----meunu----- \n 1- **Adicionar Livro** \n 2- **Adicionar Usuário** \n 3- **Emprestar Livro**: \n 4- **Devolver Livro** \n 5- **Listar Livros** \n 6-**Listar Usuários** \n 7-**Sair** ")
 
 
-print("------menu--------\n")
-print( "1- **Adicionar Livro**")
-print("2- **Adicionar Usuário** ")
-print ("3- **Emprestar Livro**:")
-print("4- **Devolver Livro**")
-print("5- **Listar Livros**")
-print("6-**Listar Usuários**")
-print("7-**Sair**")
 
 
      
 
 
+print(menu)
 
 while True:
 
     Opcao = int(input("Escolha uma opção: ")) 
 
     if Opcao == 1 :
-        nome_livro = input("Digite o nome do livro: ")
+        tipo_livro = int(input("Qual tipo de livro sera criado (1- Livro Didatico, 2- Livro Infantil)"))
+        if tipo_livro == 1 :
+            nome_livro = input("Digite o nome do livro: ")
 
-        autor = str(input("digite o autor do livro: "))
+            autor = str(input("digite o autor do livro: "))
 
-        ano_livro = int(input("Digite o ano do livro: "))
+            ano_livro = int(input("Digite o ano do livro: "))
+            disciplina = str(input("Digite o nome da disciplina: "))
+            livro = nome_livro
+            livro = LivroDidatico(nome_livro,autor,ano_livro,disciplina) 
+            biblioteca.adicionar_livro(livro)
+            print(menu)
 
-        livro= Livro(nome_livro,autor,ano_livro) 
-        biblioteca.adicionar_livro(livro)
+        if tipo_livro == 2 :
+            nome_livro = input("Digite o nome do livro: ")
 
+            autor = str(input("digite o autor do livro: "))
+
+            ano_livro = int(input("Digite o ano do livro: "))
+
+            
+            faixa_etaria = int(input("Digite a Faixa etaria:"))
+            livro = nome_livro
+            livro = LivroInfatil(nome_livro,autor,ano_livro,faixa_etaria) 
+            biblioteca.adicionar_livro(livro)
+            print(menu)
         # Exibindo as informações do livro
        # print(str(livro))
 
@@ -74,10 +59,13 @@ while True:
 
                 id = int(input("digite id do Aluno: "))
 
-                curso = str(input(("Digite o curso do aluno")))
-
+                curso = str(input(("Digite o curso do aluno :")))
+                
+                aluno = nome_Aluno
                 aluno= Aluno(nome_Aluno,id,curso) 
+
                 biblioteca.adicionar_usuario(aluno)
+                print(menu)
                 # Exibindo as informações do livro
                 #print(str(aluno))
 
@@ -87,9 +75,12 @@ while True:
                 id_pf = str(input("digite id do usuario: "))
 
                 departamento = str(input("Digite o departamento  do professor: "))
+                
+                professor = nome_pf
 
                 professor = Professor(nome_pf,id_pf,departamento) 
                 biblioteca.adicionar_usuario(professor)
+                print(menu)
                 # Exibindo as informações do livro
                 #print(str(professor))
 
@@ -100,16 +91,20 @@ while True:
         id_usuario = int(input("digite o id do Usuario: "))
         Nome_livro  =  str(input("digite o nome do Livro: "))
         biblioteca.emprestar_livro(id_usuario, Nome_livro)
+        print(menu)
         
     elif Opcao == 4:
-         livro = input("digite o nome do livro a ser devolvido ")
+         livro = input("digite o nome do livro a ser devolvido :")
          biblioteca.devolucao_livro()
+         print(menu)
 
     elif Opcao == 5:
          print(biblioteca.listar_livros())  
+         print(menu)
 
     elif Opcao == 6:
-        print( biblioteca.listar_usuarios())   
+        print( biblioteca.listar_usuarios()) 
+        print(menu)  
     elif Opcao == 7:
         print("programa encerrado")
          

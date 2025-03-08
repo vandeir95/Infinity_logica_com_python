@@ -6,10 +6,13 @@ class Usuario:
 
     def receber_livros(self, livro):
         self.livros_emprestado.append(livro)
-        livro.empresta()
+        
 
     def devolver_livro(self,livro):
-        self.livros_emprestado.remove(livro)    
+        for i in self.livros_emprestado: 
+           if i == livro :
+              livro.devolver()
+              
 
     def __str__(self):
         return f"{self.nome} ID : {self.id}"    
